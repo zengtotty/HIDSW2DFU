@@ -70,7 +70,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		if (!hid_open_path(devicePath)){
 			WZ_DEBUG_PRINT(5, "Device has been DFU mode, please check the device manager\r\n");
 			Sleep(3000);
-
+			return 0;
 		}
 	}
 
