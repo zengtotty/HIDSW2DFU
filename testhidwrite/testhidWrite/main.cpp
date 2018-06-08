@@ -42,12 +42,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	bool ret = true;
 	WZ_ErrorCode_t rc = WZ_RET_Success;
 	hid_device *handle;
+	char devicePath[255];
 	gl_log_level = 9;
 	//handle = hid_open(0x40e, 0xf408, NULL);
 	while (1){
-		handle = hid_open(0x40e, 0xf408, NULL);
+		handle = hid_open(0x40e, 0xf408, NULL, devicePath);
 		if (!handle) {
-			//WZ_DEBUG_PRINT(0, "Could not find the device\r\n");
+			WZ_DEBUG_PRINT(4, "Device Not Found...\r\n");
+			Sleep(500);
+
 		}
 		else {
 			hid_set_nonblocking(handle, false);
@@ -64,6 +67,11 @@ int _tmain(int argc, _TCHAR* argv[])
 			WZ_DEBUG_PRINT(5, "Hid write succesful\r\n");
 		}
 		Sleep(3000);
+		if (!hid_open_path(devicePath)){
+			WZ_DEBUG_PRINT(5, "Device has been DFU mode, please check the device manager\r\n");
+			Sleep(3000);
+
+		}
 	}
 
 	return 0;

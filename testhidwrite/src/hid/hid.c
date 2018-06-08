@@ -478,11 +478,11 @@ extern "C" {
 	}
 
 
-	HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, wchar_t *serial_number)
+	HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, wchar_t *serial_number, char *path_to_open)
 	{
 		// TODO: Merge this functions with the Linux version. This function should be platform independent.
 		struct hid_device_info *devs, *cur_dev;
-		const char *path_to_open = NULL;
+		//const char *path_to_open = NULL;
 		hid_device *handle = NULL;
 
 		devs = hid_enumerate(vendor_id, product_id);
